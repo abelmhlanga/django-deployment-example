@@ -1,0 +1,51 @@
+{% extends 'basic_app/base.html' %}
+{% load static %}
+
+{% block body_block %}
+  <div class="container py-4">
+    <div class="p-5 mb-4 bg-light rounded-3">
+      <div class="container-fluid py-5">
+          <h1 class="display-5 fw-bold">Registration Page</h1>
+          {% if registered %}
+            <h2>Thank you for registering!</h2>
+          {% else %}
+            <h2>Register Here!</h2>
+            <h3>Fill in the form::</h3>
+
+            <!-- <button class="btn btn-primary btn-lg" type="button">Example button</button> -->
+            <form enctype="multipart/form-data" method="post">
+              {% csrf_token %}
+              <!-- call base user form as paragraph -->
+              <!-- user_form and profile_form willbe defined
+                under the context dictionary of the views.py file-->
+              <!-- {{ user_form.as_p }}
+              {{ profile_form.as_p}} -->
+              <div class="mb-2">
+                <label for="exampleInputUsername" class="form-label">Username</label>
+                {{user_form.username}}
+              </div>
+              <div class="mb-2">
+                <label for="exampleInputEmail1" class="form-label">Email address</label>
+                {{user_form.email}}
+                <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+              </div>
+              <div class="mb-2">
+                <label for="exampleInputPassword1" class="form-label">Password</label>
+                {{user_form.password}}
+              </div>
+              <div class="mb-2">
+                <label for="exampleInputProfileImage" class="form-label">ProfileImage</label>
+                {{profile_form.profile_image}}
+              </div>
+              <div class="mb-2">
+                <label for="exampleInputPortfolioSite" class="form-label">PortfolioSite</label>
+                {{profile_form.portfolio_site}}
+              </div>
+              <button type="submit" class="btn btn-primary">Register</button>
+            </form>
+          {% endif %}
+      </div>
+    </div>
+  </div>
+
+{% endblock body_block %}
